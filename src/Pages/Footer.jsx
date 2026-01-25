@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-cyan-700 text-gray-100 pt-12">
+    <footer className="bg-cyan-700 text-gray-100 mb-auto">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
 
         {/* Brand */}
@@ -65,7 +65,7 @@ const Footer = () => {
       <div className="border-t border-gray-700 mt-10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
           
-          <p className="text-sm">
+          <p className="text-sm text-center">
             © {new Date().getFullYear()} JerseyStore. All rights reserved.
           </p>
 

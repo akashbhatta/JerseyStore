@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import Home from "./Home"; 
 import DeJong from "../photos/DeJong.jpg";
 import colePalmer from "../photos/colePalmer.jpg";
-import celeb from "../photos/celeb.jpg";
+import Arsenal from "../photos/Arsenal.jpg";
 import raphiniaCeleb from "../photos/raphiniaCeleb.jpg";
 import bg from "../photos/bg.jpg";
 
 
-const heroImages = [DeJong, colePalmer, celeb, raphiniaCeleb, bg];
+const heroImages = [DeJong, colePalmer, Arsenal, raphiniaCeleb, bg];
 
 export default function Homepage() {
   const [index, setIndex] = useState(0);

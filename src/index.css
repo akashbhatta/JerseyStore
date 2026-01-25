@@ -1,6 +1,4 @@
 @import "tailwindcss";
-
-/* Bouncing letters, infinite sequential */
 @keyframes bounceLetter {
     0% {
         transform: translateY(0);
@@ -8,9 +6,7 @@
 
     15% {
         transform: translateY(-25%);
-        /* Adjust height here */
         color: #045e9a;
-        /* Optional: subtle color pop when it bounces */
         transform: translateY(-25%) scale(1.05);
         text-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     }
@@ -18,8 +14,6 @@
     30% {
         transform: translateY(0);
     }
-
-    /* 30% to 100% is the "Wait" period */
     100% {
         transform: translateY(0);
     }
@@ -27,11 +21,9 @@
 
 .animate-bounceLetter {
     display: inline-block;
-    /* Increase duration to 2s to allow for the 'rest' phase */
     animation: bounceLetter 2s ease-in-out infinite;
 }
 
-/* Arrow-like border animation around button */
 @property --angle {
     syntax: "<angle>";
     initial-value: 0deg;
@@ -49,11 +41,8 @@
 }
 
 .border-arrow-container {
-    /* This creates the 'track' for the border */
     --border-width: 2px;
     --arrow-color: white;
-
-    /* Masking hides the center of the gradient so only the border shows */
     mask:
         linear-gradient(#22b88e 0 0) content-box,
         linear-gradient(#cc1d1d 0 0);

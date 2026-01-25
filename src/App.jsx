@@ -5,14 +5,11 @@ import Footer from "./Pages/Footer";
 import Scroll from "./Components/Scroll";
 
 function App() {
-  // ✅ define shared state here
   const [searchText, setSearchText] = useState("");
-  console.log("App State - searchText:", searchText);
   const [filterCategory, setFilterCategory] = useState("");
 
   return (
-    <div className="gradient-bg scroll-smooth">
-      {/* pass setters to Navbar */}
+    <div className="min-h-screen flex flex-col gradient-bg scroll-smooth">
       <Navbar
         setSearchText={setSearchText}
         setFilterCategory={setFilterCategory}
@@ -20,11 +17,13 @@ function App() {
 
       <Scroll />
 
-      {/* pass current values to router/pages */}
-      <AppRouter
-        searchText={searchText}
-        filterCategory={filterCategory}
-    />
+      {/* Main content grows to fill space, pushing footer down */}
+      <main className="flex-1">
+        <AppRouter
+          searchText={searchText}
+          filterCategory={filterCategory}
+        />
+      </main>
 
       <Footer />
     </div>
