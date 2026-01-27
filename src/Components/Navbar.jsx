@@ -16,27 +16,21 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
   const [localSearch, setLocalSearch] = useState("");
 
   const { cartItems } = useCart();
-  const navigate = useNavigate();
   const cartCount = cartItems.length;
+  const navigate = useNavigate();
 
-  /* ===================== FILTER HELPERS ===================== */
-
-  // Clears ONLY search
   const clearSearchOnly = () => {
     setLocalSearch("");
     setSearchText("");
     setIsSearching(false);
   };
 
-  // Clears search + category (used for Home)
   const resetAllFilters = () => {
     setLocalSearch("");
     setSearchText("");
     setFilterCategory("");
     setIsSearching(false);
   };
-
-  /* ===================== SEARCH ===================== */
 
   const handleSearch = (e) => {
     const value = e.target.value;
@@ -49,10 +43,8 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
     }
   };
 
-  /* ===================== MOBILE ===================== */
-
   const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
+    setMobileMenuOpen((prev) => !prev);
     setIsSearching(false);
   };
 
@@ -60,8 +52,6 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
     setMobileMenuOpen(false);
     setIsSearching(false);
   };
-
-  /* ===================== JSX ===================== */
 
   return (
     <nav className="h-[72px] bg-cyan-500 text-black shadow-md sticky top-0 z-50 flex items-center">
@@ -92,7 +82,7 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
           {localSearch && (
             <button
               onClick={clearSearchOnly}
-              className="absolute right-3 top-2.5 text-gray-600"
+              className="absolute right-3 top-2.5 text-gray-600 cursor-pointer"
             >
               <X size={18} />
             </button>
@@ -102,23 +92,14 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
         {/* DESKTOP MENU */}
         <div className="hidden md:flex items-center space-x-6 text-lg">
 
-          <Link
-            to="/home"
-            className="hover:text-gray-700"
-            onClick={resetAllFilters}
-          >
-            Home
-          </Link>
-
-          <Link to="/about" className="hover:text-gray-700">
-            About
-          </Link>
+          <Link to="/home" onClick={resetAllFilters}>Home</Link>
+          <Link to="/about">About</Link>
 
           {/* CATEGORY */}
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center gap-1 hover:text-gray-700 cursor-pointer"
+              className="flex items-center gap-1 cursor-pointer"
             >
               Category <ChevronDown size={18} />
             </button>
@@ -126,7 +107,7 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
             {dropdownOpen && (
               <div className="absolute bg-white rounded shadow-md mt-2 w-44 py-2 border">
                 <button
-                  className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
                   onClick={() => {
                     clearSearchOnly();
                     setFilterCategory("club");
@@ -136,9 +117,8 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
                 >
                   Club Jerseys
                 </button>
-
                 <button
-                  className="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
                   onClick={() => {
                     clearSearchOnly();
                     setFilterCategory("country");
@@ -152,12 +132,10 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
             )}
           </div>
 
-          <Link to="/contact" className="hover:text-gray-700">
-            Contact
-          </Link>
+          <Link to="/contact">Contact</Link>
 
           {/* CART */}
-          <Link to="/cart" className="relative">
+          <Link to="/cart" className="relative cursor-pointer">
             <ShoppingCart size={26} />
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
@@ -169,9 +147,10 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
           <SignedIn>
             <UserButton afterSignOutUrl="/" />
           </SignedIn>
+
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="px-4 py-1 bg-white text-cyan-600 rounded">
+              <button className="px-4 py-1 bg-white text-cyan-600 rounded cursor-pointer">
                 Login
               </button>
             </SignInButton>
@@ -180,16 +159,26 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
 
         {/* MOBILE ICONS */}
         <div className="flex md:hidden items-center gap-4 z-[60]">
-          <Link to="/cart" onClick={closeMobileMenu}>
+          <Link to="/cart" className="relative cursor-pointer" onClick={closeMobileMenu}>
             <ShoppingCart size={24} />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
           </Link>
-          <button onClick={toggleMobileMenu}>
+
+          <button
+            onClick={toggleMobileMenu}
+            className="cursor-pointer p-1 active:scale-95 transition-transform"
+            aria-label="Toggle menu"
+          >
             {mobileMenuOpen ? <X size={30} /> : <Menu size={30} />}
           </button>
         </div>
       </div>
 
-      {/* MOBILE BACKDROP */}
+      {/* BACKDROP */}
       {mobileMenuOpen && (
         <div
           className="fixed inset-0 bg-black/40 z-[54]"
@@ -199,18 +188,13 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
 
       {/* MOBILE SIDEBAR */}
       <div
-        className={`fixed top-0 right-0 h-full w-[280px] bg-cyan-500 z-[55] transform transition-transform duration-300
-          ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 h-full w-[280px] bg-cyan-500 z-[55]
+        transform transition-transform duration-300
+        ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
       >
-        <div className="p-6 pt-24 space-y-6 font-semibold">
+        <div className="pt-24 px-6 flex flex-col space-y-6 text-lg font-medium">
 
-          <Link
-            to="/home"
-            onClick={() => {
-              resetAllFilters();
-              closeMobileMenu();
-            }}
-          >
+          <Link to="/home" onClick={() => { resetAllFilters(); closeMobileMenu(); }}>
             Home
           </Link>
 
@@ -218,37 +202,43 @@ const Navbar = ({ setSearchText, setFilterCategory }) => {
             About
           </Link>
 
-          <div>
-            <p className="text-xs uppercase opacity-60">Categories</p>
+          {/* CATEGORY SECTION */}
+          <div className="pt-4 border-t border-black/20">
+            <p className="text-xs uppercase opacity-60 mb-3">
+              Categories
+            </p>
 
-            <button
-              className="block mt-2"
-              onClick={() => {
-                clearSearchOnly();
-                setFilterCategory("club");
-                closeMobileMenu();
-                navigate("/home");
-              }}
-            >
-              Club Jerseys
-            </button>
+            <div className="flex flex-col space-y-3">
+              <button
+                className="text-left cursor-pointer"
+                onClick={() => {
+                  clearSearchOnly();
+                  setFilterCategory("club");
+                  closeMobileMenu();
+                  navigate("/home");
+                }}
+              >
+                Club Jerseys
+              </button>
 
-            <button
-              className="block mt-2"
-              onClick={() => {
-                clearSearchOnly();
-                setFilterCategory("country");
-                closeMobileMenu();
-                navigate("/home");
-              }}
-            >
-              Country Jerseys
-            </button>
+              <button
+                className="text-left cursor-pointer"
+                onClick={() => {
+                  clearSearchOnly();
+                  setFilterCategory("country");
+                  closeMobileMenu();
+                  navigate("/home");
+                }}
+              >
+                Country Jerseys
+              </button>
+            </div>
           </div>
 
           <Link to="/contact" onClick={closeMobileMenu}>
             Contact
           </Link>
+
         </div>
       </div>
     </nav>
