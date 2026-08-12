@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useCart } from "../../Pages/CartContext";
-import { generateUniqueId } from "../utils/helpers";
+import { generateUniqueId } from "../utils/helper";
 import axios from "axios";
 
 const PaymentForm = () => {
