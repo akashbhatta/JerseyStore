@@ -7,15 +7,15 @@ const SlideShow = ({ jerseys }) => {
   const [paused, setPaused] = useState(false);
   const { addToCart } = useCart();
 
-  if (!jerseys || jerseys.length === 0) return null;
-
   useEffect(() => {
-    if (paused) return;
+    if (paused || !jerseys || jerseys.length === 0) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % jerseys.length);
     }, 3000);
     return () => clearInterval(timer);
-  }, [paused, jerseys.length]);
+  }, [paused, jerseys?.length]);
+
+  if (!jerseys || jerseys.length === 0) return null;
 
   return (
     <div

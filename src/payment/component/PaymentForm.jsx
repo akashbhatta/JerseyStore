@@ -62,7 +62,7 @@ const PaymentForm = () => {
             <span>
               {item.name} × {item.quantity || 1}
             </span>
-            <span>${item.price * (item.quantity || 1)}</span>
+            <span>NPR {item.price * (item.quantity || 1)}</span>
           </div>
         ))}
 

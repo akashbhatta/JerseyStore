@@ -1,0 +1,15 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "env": {
+    "VITE_CLERK_PUBLISHABLE_KEY": "@clerk_publishable_key",
+    "VITE_ESEWA_MERCHANT_ID": "@esewa_merchant_id",
+    "VITE_ESEWA_SECRET": "@esewa_secret",
+    "VITE_ESEWA_PAYMENT_URL": "@esewa_payment_url",
+    "VITE_ESEWA_STATUS_URL": "@esewa_status_url",
+    "VITE_SUCCESS_URL": "@success_url",
+    "VITE_FAILURE_URL": "@failure_url"
+  },
+  "public": true
+}

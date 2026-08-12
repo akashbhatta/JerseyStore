@@ -5,7 +5,7 @@ import ClubDetail from "../Pages/ClubDetail";
 import CartDisplay from "../Pages/CartDisplay";
 import AboutSection from "../Pages/About";
 import Contact from "../Pages/Contact";
-import PaymentForm from "../payment/component/PaymentForm"
+import PaymentForm from "../payment/component/PaymentForm";
 import PaymentSuccess from "../payment/component/PaymentSuccess";
 import PaymentFailure from "../payment/component/PaymentFailure";
 
@@ -37,7 +37,7 @@ const AppRouter = ({ searchText, filterCategory }) => {
 
       {/* Jersey detail */}
       <Route path="/club/:clubId" element={<ClubDetail />} />
-      <Route path="/payment" element={PaymentForm} />
+      <Route path="/payment" element={<PaymentForm />} />
       <Route path="/payment-success" element={<PaymentSuccess />} />
       <Route path="/payment-failure" element={<PaymentFailure />} />
     </Routes>
