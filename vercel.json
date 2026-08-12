@@ -10,6 +10,5 @@
     "VITE_ESEWA_STATUS_URL": "@esewa_status_url",
     "VITE_SUCCESS_URL": "@success_url",
     "VITE_FAILURE_URL": "@failure_url"
-  },
-  "public": true
+  }
 }
