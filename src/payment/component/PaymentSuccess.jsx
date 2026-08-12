@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { base64Decode } from "../utils/helpers";
+import { base64Decode } from "../utils/helper";
 
 const PaymentSuccess = () => {
   const [status, setStatus] = useState(null);
