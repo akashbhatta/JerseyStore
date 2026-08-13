@@ -1,25 +1,35 @@
-import crypto from "crypto";
+import crypto from "node:crypto";
 
 export default async function handler(req, res) {
-  // Only allow POST
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
+    return res.status(405).json({ message: "Only POST allowed" });
   }
 
   try {
-    const { amount, productId, productName } = req.body;
+    const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+    const { amount, productId } = body || {};
 
     if (!amount || !productId) {
-      return res.status(400).json({ message: "Amount and productId are required" });
+      return res.status(400).json({
+        message: "amount and productId are required",
+        received: body,
+      });
     }
 
-    const merchantId = process.env.ESEWA_MERCHANT_ID || "EPAYTEST";
-    const secret = process.env.ESEWA_SECRET || "8gBm/:&EnhH.1/q";
-    const paymentUrl = process.env.ESEWA_PAYMENT_URL || "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
-    const successUrl = process.env.SUCCESS_URL || "https://your-project.vercel.app/payment-success";
-    const failureUrl = process.env.FAILURE_URL || "https://your-project.vercel.app/payment-failure";
+    const merchantId = "EPAYTEST";
+    const secret = "8gBm/:&EnhH.1/q";
+    const paymentUrl = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
+    const successUrl = "https://jersey-store-six.vercel.app/payment-success";
+    const failureUrl = "https://jersey-store-six.vercel.app/payment-failure";
 
-    // Prepare payment data
     const paymentData = {
       amount: String(amount),
       tax_amount: "0",
@@ -33,24 +43,23 @@ export default async function handler(req, res) {
       signed_field_names: "total_amount,transaction_uuid,product_code",
     };
 
-    // Generate signature
-    const data = `total_amount=${paymentData.total_amount},transaction_uuid=${paymentData.transaction_uuid},product_code=${paymentData.product_code}`;
+    const dataToSign = `total_amount=${paymentData.total_amount},transaction_uuid=${paymentData.transaction_uuid},product_code=${paymentData.product_code}`;
+
     const signature = crypto
       .createHmac("sha256", secret)
-      .update(data)
+      .update(dataToSign)
       .digest("base64");
 
-    // Return data to frontend
     return res.status(200).json({
       ...paymentData,
       signature,
       payment_url: paymentUrl,
     });
   } catch (error) {
-    console.error("Initiate payment error:", error);
-    return res.status(500).json({ message: "Failed to initiate payment" });
-  }
-}
-    return res.status(500).json({ message: "Failed to initiate payment" });
+    console.error("Payment error:", error);
+    return res.status(500).json({
+      message: "Internal server error",
+      error: error.message,
+    });
   }
 }
