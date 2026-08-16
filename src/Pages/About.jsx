@@ -25,7 +25,7 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section className="bg-gray-300 text-gray-900 py-25">
+    <section className="bg-gray-100 text-gray-900 py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
         
         {/* Left Content */}
@@ -53,7 +53,7 @@ export default function AboutSection() {
             to grow alongside the football community that inspires it.
           </p>
 
-          <div className="flex gap-8">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
             <div>
               <h4 className="text-2xl font-semibold text-black">Carefully</h4>
               <p className="text-sm text-gray-900">Selected Jerseys</p>
@@ -70,7 +70,7 @@ export default function AboutSection() {
         </div>
 
         {/* Right Slideshow */}
-        <div className="relative w-full h-[450px] rounded-2xl overflow-hidden shadow-lg">
+        <div className="relative w-full h-[360px] md:h-[450px] rounded-lg overflow-hidden shadow-lg">
           {images.map((img, i) => (
             <img
               key={i}

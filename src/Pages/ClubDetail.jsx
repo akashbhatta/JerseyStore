@@ -24,23 +24,23 @@ export default function ClubDetail() {
     );
   }
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen px-4 py-8">
       <div className="max-w-5xl mx-auto">
         {/* Breadcrumb / Back button */}
         <button onClick={() => navigate(-1)} className="mb-6 text-black hover:underline flex items-center cursor-pointer">
           ← Back to Jerseys
         </button>
-        <div className="bg-white p-8 rounded-2xl shadow-sm mb-10 border border-gray-100">
-          <h1 className="text-4xl font-black mb-6 text-center">{team.teamName}</h1>
+        <div className="bg-white p-6 md:p-8 rounded-lg shadow-sm mb-10 border border-gray-100">
+          <h1 className="text-3xl md:text-4xl font-black mb-6 text-center">{team.teamName}</h1>
           <div className="h-1 w-20 bg-gray-600 mx-auto mb-6"></div>
           <p className="text-gray-600 text-lg leading-relaxed first-letter:text-4xl first-letter:font-bold">
             {team.description || "No description available for this team."}
           </p>
         </div>
         <h2 className="text-2xl font-bold mb-8">Shop the Collection</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {team.jerseys.map((jersey) => (
-            <div key={jersey.id} className="bg-gray-200 p-4 rounded-xl shadow-md group">
+            <div key={jersey.id} className="bg-white p-4 rounded-lg shadow-md group border border-slate-200 transition hover:-translate-y-1 hover:shadow-xl">
               <div className="overflow-hidden rounded-lg mb-4">
                 <img src={jersey.imageSrc} alt={jersey.name} className="w-full h-80 object-contain group-hover:scale-105 transition-transform duration-500" />
               </div>

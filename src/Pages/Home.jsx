@@ -152,27 +152,27 @@ const Home = ({ filterCategory = "", searchQuery = "" }) => {
     : [];
 
   return (
-    <div className="bg-slate-400 min-h-screen">
+    <div className="bg-slate-100 min-h-screen">
       {/* MATCHED RESULTS */}
-<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-none p-6">
+<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full max-w-7xl mx-auto p-4 md:p-6">
   {matchedTeams.length > 0 ? (
     matchedTeams.map((team) => (
       <div key={team.teamName} className="w-full">
-        <h2 className="text-center text-sm md:text-base font-bold mb-2 uppercase text-white">
+        <h2 className="text-center text-sm md:text-base font-bold mb-2 uppercase text-slate-800">
           {team.teamName}
         </h2>
 
         <Link
           to={`/club/${team.teamName.toLowerCase().replace(/\s+/g, "")}`}
           state={{ team }}
-          className="block w-full"
+          className="block w-full rounded-lg transition hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-cyan-300"
         >
           <SlideShow jerseys={team.jerseys} />
         </Link>
       </div>
     ))
   ) : (
-    <div className="col-span-full text-center py-20 text-white">
+    <div className="col-span-full text-center py-20 text-slate-700">
       <h3 className="text-2xl font-bold">
         No results found for "{searchQuery}"
       </h3>
@@ -181,20 +181,20 @@ const Home = ({ filterCategory = "", searchQuery = "" }) => {
 </div>
       {/* SUGGESTIONS */}
       {suggestedTeams.length > 0 && (
-        <div className="p-6 border-t border-slate-200">
-          <h2 className="text-2xl font-bold mb-6 text-white italic">
+        <div className="border-t border-slate-200 p-4 md:p-6">
+          <h2 className="mx-auto mb-6 max-w-7xl text-2xl font-bold text-slate-800 italic">
             Recommended for you
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-none">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full max-w-7xl mx-auto">
             {suggestedTeams.slice(0, 4).map((team) => (
               <Link
                 key={team.teamName}
                 to={`/club/${team.teamName.toLowerCase().replace(/\s+/g, "")}`}
                 state={{ team }}
-                className="block"
+                className="block rounded-lg transition hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-cyan-300"
               >
-                <h2 className="text-center text-sm font-bold mb-2 text-white">
+                <h2 className="text-center text-sm font-bold mb-2 text-slate-800">
                   {team.teamName}
                 </h2>
                 <SlideShow jerseys={team.jerseys} />

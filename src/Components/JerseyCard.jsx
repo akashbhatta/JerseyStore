@@ -9,7 +9,7 @@ const JerseyCard = ({ id, imageSrc, name, price }) => {
   };
 
   return (
-    <div className="w-full bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200">
+    <div className="w-full bg-white rounded-lg overflow-hidden shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 border border-slate-200">
       {/* IMAGE */}
       <div className="aspect-[3/4] overflow-hidden">
         <img
@@ -31,7 +31,7 @@ const JerseyCard = ({ id, imageSrc, name, price }) => {
 
         <button
           onClick={handleAdd}
-          className="mt-3 w-full py-2 bg-cyan-500 hover:bg-black hover:text-green-500 text-xs md:text-sm font-semibold rounded-lg transition-colors duration-300"
+          className="mt-3 w-full py-2.5 bg-cyan-500 hover:bg-black hover:text-green-500 text-xs md:text-sm font-semibold rounded-lg transition-colors duration-300 cursor-pointer"
         >
           Add to Cart
         </button>

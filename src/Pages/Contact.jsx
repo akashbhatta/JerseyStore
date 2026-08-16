@@ -16,7 +16,7 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Contact Info */}
-          <div className="bg-white rounded-2xl shadow-md p-8 space-y-6">
+          <div className="bg-white rounded-lg shadow-md p-8 space-y-6">
             <h3 className="text-xl font-semibold text-gray-900">Get in Touch</h3>
 
             <div className="flex items-center gap-4 text-gray-700">
@@ -40,7 +40,7 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white rounded-2xl shadow-md p-8">
+          <div className="bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-gray-900 mb-6 ">Send a Message</h3>
 
             <form className="space-y-5">

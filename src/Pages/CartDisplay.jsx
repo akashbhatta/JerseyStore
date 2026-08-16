@@ -25,13 +25,13 @@ const CartDisplay = () => {
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between border p-4 rounded-lg"
+                className="flex flex-col gap-4 border bg-white p-4 rounded-lg shadow-sm sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="flex items-center gap-4">
                   <img
                     src={item.imageSrc}
                     alt={item.name}
-                    className="w-20 h-20 object-cover rounded"
+                    className="w-20 h-20 object-contain rounded bg-slate-50"
                   />
                   <div>
                     <p className="font-semibold">{item.name}</p>
@@ -43,7 +43,7 @@ const CartDisplay = () => {
 
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  className="text-orange-700 font-semibold text-sm hover:underline"
+                  className="text-orange-700 font-semibold text-sm hover:underline cursor-pointer self-start sm:self-auto"
                 >
                   Remove
                 </button>
@@ -58,7 +58,7 @@ const CartDisplay = () => {
 
             <button
               onClick={() => navigate("/payment")}
-              className="bg-green-600 hover:bg-green-700 text-white px-10 py-3 rounded-lg font-semibold transition"
+              className="bg-green-600 hover:bg-green-700 text-white px-10 py-3 rounded-lg font-semibold transition cursor-pointer"
             >
               Proceed to Payment
             </button>

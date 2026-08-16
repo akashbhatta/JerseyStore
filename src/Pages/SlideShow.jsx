@@ -19,27 +19,28 @@ const SlideShow = ({ jerseys }) => {
 
   return (
     <div
-      className="relative group w-full min-w-0 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition"
+      className="relative group w-full min-w-0 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
       {/* IMAGE */}
-      <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
+      <div className="relative w-full aspect-[4/5] bg-gray-50 overflow-hidden">
         <button
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             addToCart(jerseys[current]);
           }}
-          className="absolute top-1.5 right-1.5 z-10 bg-white/90 p-1 rounded-full shadow hover:bg-black hover:text-white transition cursor-pointer"
+          className="absolute top-2 right-2 z-10 bg-white/90 p-2 rounded-full shadow hover:bg-black hover:text-white transition cursor-pointer"
+          aria-label={`Add ${jerseys[current].name} to cart`}
         >
-          <ShoppingCart size={13} />
+          <ShoppingCart size={16} />
         </button>
 
         <img
           src={jerseys[current].imageSrc}
           alt={jerseys[current].name}
-          className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-contain p-3 transition-transform duration-500 group-hover:scale-105"
         />
 
         {/* ARROWS */}
@@ -50,7 +51,8 @@ const SlideShow = ({ jerseys }) => {
               e.stopPropagation();
               setCurrent((c) => (c - 1 + jerseys.length) % jerseys.length);
             }}
-            className="pointer-events-auto bg-white/80 p-0.5 rounded-full shadow cursor-pointer"
+            className="pointer-events-auto bg-white/90 p-1.5 rounded-full shadow cursor-pointer hover:bg-cyan-500 hover:text-white transition"
+            aria-label="Previous jersey"
           >
             <ChevronLeft size={16} />
           </button>
@@ -60,7 +62,8 @@ const SlideShow = ({ jerseys }) => {
               e.stopPropagation();
               setCurrent((c) => (c + 1) % jerseys.length);
             }}
-            className="pointer-events-auto bg-white/80 p-0.5 rounded-full shadow cursor-pointer"
+            className="pointer-events-auto bg-white/90 p-1.5 rounded-full shadow cursor-pointer hover:bg-cyan-500 hover:text-white transition"
+            aria-label="Next jersey"
           >
             <ChevronRight size={16} />
           </button>
@@ -68,8 +71,8 @@ const SlideShow = ({ jerseys }) => {
       </div>
 
       {/* INFO */}
-      <div className="p-2 text-center">
-        <h2 className=" font-bold truncate">
+      <div className="p-3 text-center">
+        <h2 className="text-sm md:text-base font-bold truncate text-slate-900">
           {jerseys[current].name}
         </h2>
         <p className="text-sm font-semibold text-gray-700">
